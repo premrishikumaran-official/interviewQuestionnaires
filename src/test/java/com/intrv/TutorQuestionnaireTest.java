@@ -34,8 +34,8 @@ public class TutorQuestionnaireTest {
         tutorQuestionnaire.setOnlineTutoring(true);
         tutorQuestionnaire.setAfterSchooling(true);
         tutorQuestionnaire.setHomeSchooling(true);
-        tutorQuestionnaire.setTutorialExperience(10);
-        assertEquals(5, tutorQuestionnaire.getScore());
+        tutorQuestionnaire.setTutorialExperience(2);
+        assertEquals(4, tutorQuestionnaire.getScore());
     }
 
     @Test
