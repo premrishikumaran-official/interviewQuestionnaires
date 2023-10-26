@@ -32,15 +32,22 @@ public class TutorQuestionnaire {
     }
 
     public int getScore() {
-        score += onlineTutoring ? 1 : 0;
-        score += homeSchooling ? 1 : 0;
-        score += afterSchooling ? 1 : 0;
+        setMultipleChoiceScore();
+        setSingleChoiceExperienceScore();
+        return score;
+    }
 
+    private void setSingleChoiceExperienceScore() {
         if (tutorialExperience > 3) {
             score += 2;
         } else if (tutorialExperience > 1) {
             score += 1;
         }
-        return score;
+    }
+
+    private void setMultipleChoiceScore() {
+        score += onlineTutoring ? 1 : 0;
+        score += homeSchooling ? 1 : 0;
+        score += afterSchooling ? 1 : 0;
     }
 }
