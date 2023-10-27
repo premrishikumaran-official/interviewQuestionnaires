@@ -14,8 +14,6 @@ public class TutorScoring {
     private final List<SelectedChoice> multipleChoiceAnswers;
     private final List<SingleChoiceAnswer> singleChoiceAnswers;
 
-    private int score;
-
     public TutorScoring(String tutorId, List<SelectedChoice> multipleChoiceAnswers,
                         List<SingleChoiceAnswer> singleChoiceAnswers) {
         this.tutorId = tutorId;
