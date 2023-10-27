@@ -26,7 +26,7 @@ public class TutorScoring {
     private int calculateMultipleChoiceScore() {
         return multipleChoiceAnswers
                 .stream()
-                .filter(choice -> choice.isSelected())
+                .filter(SelectedChoice::isSelected)
                 .map(eachSelectedchoice -> 1)
                 .reduce(0, Integer::sum);
     }
@@ -34,7 +34,7 @@ public class TutorScoring {
     private int calculateSingleChoiceScore() {
         return singleChoiceAnswers
                 .stream()
-                .map(s -> s.getScore())
+                .map(SingleChoiceAnswer::getScore)
                 .reduce(0, Integer::sum);
     }
 
