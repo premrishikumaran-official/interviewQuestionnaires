@@ -1,12 +1,13 @@
 package com.intrv;
 
 
-import com.intrv.multichoice.AfterSchoolClub;
-import com.intrv.multichoice.HomeSchooling;
-import com.intrv.multichoice.OnlineTutoring;
-import com.intrv.multichoice.SelectedChoice;
-import com.intrv.singlechoice.SingleChoiceAnswer;
-import com.intrv.singlechoice.TutoringYears;
+import com.intrv.model.multichoice.AfterSchoolClub;
+import com.intrv.model.multichoice.HomeSchooling;
+import com.intrv.model.multichoice.OnlineTutoring;
+import com.intrv.model.multichoice.SelectedChoice;
+import com.intrv.model.singlechoice.SingleChoiceAnswer;
+import com.intrv.model.singlechoice.TutoringYears;
+import com.intrv.util.TutorScoring;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -21,13 +22,7 @@ public class TutorScoringIT {
                 List.of(new AfterSchoolClub(),new HomeSchooling(),new OnlineTutoring());
         List<SingleChoiceAnswer> tutoringYears
                                         = List.of(new TutoringYears(3));
-
-        TutorScoring tutorScoring =
-                new TutorScoring("TUT01", selectedChoices,tutoringYears);
-
-        assertEquals(5,tutorScoring.getScore());
-        assertEquals("TUT01",tutorScoring.getTutorId());
-
+        assertEquals(5,TutorScoring.getTotalScore(selectedChoices,tutoringYears));
     }
 
     @Test
@@ -37,11 +32,7 @@ public class TutorScoringIT {
         List<SingleChoiceAnswer> tutoringYears
                 = List.of(new TutoringYears(2));
 
-        TutorScoring tutorScoring =
-                new TutorScoring("TUT01", selectedChoices,tutoringYears);
-
-        assertEquals(4,tutorScoring.getScore());
-        assertEquals("TUT01",tutorScoring.getTutorId());
+        assertEquals(4,TutorScoring.getTotalScore(selectedChoices,tutoringYears));
 
     }
 
@@ -53,11 +44,7 @@ public class TutorScoringIT {
         List<SingleChoiceAnswer> tutoringYears
                 = List.of(new TutoringYears(1));
 
-        TutorScoring tutorScoring =
-                new TutorScoring("TUT01", selectedChoices,tutoringYears);
-
-        assertEquals(3,tutorScoring.getScore());
-        assertEquals("TUT01",tutorScoring.getTutorId());
+        assertEquals(3,TutorScoring.getTotalScore(selectedChoices,tutoringYears));
 
     }
 
