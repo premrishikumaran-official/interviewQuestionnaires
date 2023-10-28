@@ -1,43 +1,48 @@
 package com.intrv.model;
 
+import com.intrv.model.multichoice.MultipleCategory;
+import com.intrv.model.singlechoice.SingleCategory;
+
+import java.util.Objects;
+
 public class Answer {
 
-    private String id;
-    //check boxed
-    private boolean isMultiSelection;
+    MultipleCategory multipleCategory;
 
-    private Integer value;
+    SingleCategory singleCategory;
 
-    public Answer() {
+    public MultipleCategory getMultipleCategory() {
+        return multipleCategory;
     }
 
-    public Answer(String id, boolean isMultiSelection, Integer value) {
-        this.id = id;
-        this.isMultiSelection = isMultiSelection;
-        this.value = value;
+    public void setMultipleCategory(MultipleCategory multipleCategory) {
+        this.multipleCategory = multipleCategory;
     }
 
-    public String getId() {
-        return id;
+    public SingleCategory getSingleCategory() {
+        return singleCategory;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSingleCategory(SingleCategory singleCategory) {
+        this.singleCategory = singleCategory;
     }
 
-    public boolean isMultiSelection() {
-        return isMultiSelection;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Answer)) return false;
+
+        Answer answer = (Answer) o;
+
+        if (!Objects.equals(multipleCategory, answer.multipleCategory))
+            return false;
+        return Objects.equals(singleCategory, answer.singleCategory);
     }
 
-    public void setMultiSelection(boolean multiSelection) {
-        isMultiSelection = multiSelection;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
+    @Override
+    public int hashCode() {
+        int result = multipleCategory != null ? multipleCategory.hashCode() : 0;
+        result = 31 * result + (singleCategory != null ? singleCategory.hashCode() : 0);
+        return result;
     }
 }

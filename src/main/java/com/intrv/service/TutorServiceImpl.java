@@ -1,12 +1,16 @@
 package com.intrv.service;
 
+import com.intrv.helper.ScoreHelper;
 import com.intrv.model.Answer;
 import com.intrv.model.Questionnaire;
-import com.intrv.model.multichoice.SelectedChoice;
-import com.intrv.model.singlechoice.SingleChoiceAnswer;
+import com.intrv.model.multichoice.MultiSelectionChoice;
+import com.intrv.model.multichoice.MultipleCategory;
+import com.intrv.model.singlechoice.SingleCategory;
+import com.intrv.model.singlechoice.SingleSelection;
 import com.intrv.util.QuestionMapper;
 import com.intrv.util.TutorScoring;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,27 +21,35 @@ public class TutorServiceImpl implements TutorService {
     @Override
     public int calculateScore(Questionnaire questionnaire) {
 
-        List<Answer> answers = questionnaire.getAnswers();
+        Answer answer = questionnaire.getAnswer();
+        MultipleCategory multipleCategory = answer.getMultipleCategory();
+        SingleCategory singleCategory = answer.getSingleCategory();
 
-        if (answers == null || answers.isEmpty()) return 0;
+        List<MultiSelectionChoice> multiSelectionChoices =
+                        Optional.ofNullable(multipleCategory.getCheckboxes())
+                                .orElseGet(ArrayList::new);
 
-        List<SelectedChoice> checkboxChoices = answers.stream()
-                .filter(Answer::isMultiSelection)
-                .map(a -> QuestionMapper.findByQuestionIdAndSetValue(a.getId(),0))
+        List<SingleSelection> singleSelections =
+                Optional.ofNullable(singleCategory.getSingleSelections())
+                                                .orElseGet(ArrayList::new);
+
+        List<ScoreHelper> multiScoreHelper = multiSelectionChoices.stream()
+                .filter(MultiSelectionChoice::isSelected)
+                .map(a -> QuestionMapper.findByTypeId(a.getType(),1))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .map(SelectedChoice.class::cast)
+                .map(sh->sh.setValue(1))
                 .collect(Collectors.toList());
 
-        List<SingleChoiceAnswer> selectedChoices = answers.stream()
-                .filter(a -> !a.isMultiSelection())
-                .map(a -> QuestionMapper.findByQuestionIdAndSetValue(a.getId(),a.getValue()))
+        List<ScoreHelper> singleScoreHelper = singleSelections.stream()
+                .filter(ss->ss.getValue()!=0)
+                .map(a -> QuestionMapper.findByTypeId(a.getType(),a.getValue()))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .map(SingleChoiceAnswer.class::cast)
                 .collect(Collectors.toList());
 
-       return TutorScoring.getTotalScore(checkboxChoices, selectedChoices);
+
+       return TutorScoring.getTotalScore(multiScoreHelper, singleScoreHelper);
 
     }
 }

@@ -1,23 +1,27 @@
 package com.intrv.model;
 
-import java.util.List;
-
 public class Questionnaire {
 
-    List<Answer> answers;
+    private String tutorId;
+
+    private Answer answer;
 
     public Questionnaire() {
     }
 
-    public Questionnaire(List<Answer> answers) {
-        this.answers = answers;
+    public Answer getAnswer() {
+        return answer;
     }
 
-    public List<Answer> getAnswers() {
-        return answers;
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
+    public String getTutorId() {
+        return tutorId;
+    }
+
+    public void setTutorId(String tutorId) {
+        this.tutorId = tutorId;
     }
 }

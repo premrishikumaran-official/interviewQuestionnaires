@@ -2,6 +2,10 @@ package com.intrv.testUtil;
 
 import com.intrv.model.Answer;
 import com.intrv.model.Questionnaire;
+import com.intrv.model.multichoice.MultiSelectionChoice;
+import com.intrv.model.multichoice.MultipleCategory;
+import com.intrv.model.singlechoice.SingleCategory;
+import com.intrv.model.singlechoice.SingleSelection;
 
 import java.util.List;
 
@@ -9,28 +13,22 @@ public class TestQuestionnaireFactory {
 
     public static Questionnaire getQuestHomeAfterSclOnlineTutor2YearTutoring() {
         Questionnaire questionnaire = new Questionnaire();
+        Answer answer = new Answer();
 
-        Answer answer1 = new Answer();
-        answer1.setId("1a"); //AfterSchoolClub
-        answer1.setValue(0);
-        answer1.setMultiSelection(true);
+        MultiSelectionChoice afterSchoolClub = new MultiSelectionChoice("Q1a",true);
+        MultiSelectionChoice homeSchooling = new MultiSelectionChoice("Q1b",true);
+        MultiSelectionChoice onlineTutoring = new MultiSelectionChoice("Q1c",true);
 
-        Answer answer2 = new Answer();
-        answer2.setId("1b"); //HomeSchooling
-        answer2.setValue(0);
-        answer2.setMultiSelection(true);
+        MultipleCategory multipleCategory = new MultipleCategory();
+        multipleCategory.setCheckboxes(List.of(afterSchoolClub,homeSchooling,onlineTutoring));
+        answer.setMultipleCategory(multipleCategory);
 
-        Answer answer3 = new Answer();
-        answer3.setId("1c"); //OnlineTutoring
-        answer3.setValue(0);
-        answer3.setMultiSelection(true);
 
-        Answer answer4 = new Answer();
-        answer4.setId("2"); //TutoringYears
-        answer4.setValue(2);
-        answer4.setMultiSelection(false);
-
-        questionnaire.setAnswers(List.of(answer1,answer2,answer3,answer4));
+        SingleSelection yearsOfTraining = new SingleSelection("Q2",2);
+        SingleCategory singleCategory = new SingleCategory();
+        singleCategory.setSingleSelections(List.of(yearsOfTraining));
+        answer.setSingleCategory(singleCategory);
+        questionnaire.setAnswer(answer);
 
         return questionnaire;
     }
@@ -38,69 +36,61 @@ public class TestQuestionnaireFactory {
 
     public static Questionnaire getQuestHomeAfterSclOnlineTutor3YearTutoring() {
         Questionnaire questionnaire = new Questionnaire();
+        Answer answer = new Answer();
 
-        Answer answer1 = new Answer();
-        answer1.setId("1a"); //AfterSchoolClub
-        answer1.setValue(0);
-        answer1.setMultiSelection(true);
+        MultiSelectionChoice afterSchoolClub = new MultiSelectionChoice("Q1a",true);
+        MultiSelectionChoice homeSchooling = new MultiSelectionChoice("Q1b",true);
+        MultiSelectionChoice onlineTutoring = new MultiSelectionChoice("Q1c",true);
 
-        Answer answer2 = new Answer();
-        answer2.setId("1b"); //HomeSchooling
-        answer2.setValue(0);
-        answer2.setMultiSelection(true);
+        MultipleCategory multipleCategory = new MultipleCategory();
+        multipleCategory.setCheckboxes(List.of(afterSchoolClub,homeSchooling,onlineTutoring));
+        answer.setMultipleCategory(multipleCategory);
 
-        Answer answer3 = new Answer();
-        answer3.setId("1c"); //OnlineTutoring
-        answer3.setValue(0);
-        answer3.setMultiSelection(true);
 
-        Answer answer4 = new Answer();
-        answer4.setId("2"); //TutoringYears
-        answer4.setValue(3);
-        answer4.setMultiSelection(false);
-
-        questionnaire.setAnswers(List.of(answer1,answer2,answer3,answer4));
+        SingleSelection yearsOfTraining = new SingleSelection("Q2",3);
+        SingleCategory singleCategory = new SingleCategory();
+        singleCategory.setSingleSelections(List.of(yearsOfTraining));
+        answer.setSingleCategory(singleCategory);
+        questionnaire.setAnswer(answer);
 
         return questionnaire;
     }
 
     public static Questionnaire getQuestHomeAfterSclOnlineTutor10YearTutoring() {
         Questionnaire questionnaire = new Questionnaire();
+        Answer answer = new Answer();
 
-        Answer answer1 = new Answer();
-        answer1.setId("1a"); //AfterSchoolClub
-        answer1.setValue(0);
-        answer1.setMultiSelection(true);
+        MultiSelectionChoice afterSchoolClub = new MultiSelectionChoice("Q1a",true);
+        MultiSelectionChoice homeSchooling = new MultiSelectionChoice("Q1b",true);
+        MultiSelectionChoice onlineTutoring = new MultiSelectionChoice("Q1c",true);
 
-        Answer answer2 = new Answer();
-        answer2.setId("1b"); //HomeSchooling
-        answer2.setValue(0);
-        answer2.setMultiSelection(true);
+        MultipleCategory multipleCategory = new MultipleCategory();
+        multipleCategory.setCheckboxes(List.of(afterSchoolClub,homeSchooling,onlineTutoring));
+        answer.setMultipleCategory(multipleCategory);
 
-        Answer answer3 = new Answer();
-        answer3.setId("1c"); //OnlineTutoring
-        answer3.setValue(0);
-        answer3.setMultiSelection(true);
 
-        Answer answer4 = new Answer();
-        answer4.setId("2"); //TutoringYears
-        answer4.setValue(10);
-        answer4.setMultiSelection(false);
-
-        questionnaire.setAnswers(List.of(answer1,answer2,answer3,answer4));
+        SingleSelection yearsOfTraining = new SingleSelection("Q2",10);
+        SingleCategory singleCategory = new SingleCategory();
+        singleCategory.setSingleSelections(List.of(yearsOfTraining));
+        answer.setSingleCategory(singleCategory);
+        questionnaire.setAnswer(answer);
 
         return questionnaire;
     }
 
     public static Questionnaire getOnlyTutor10YearTutoring() {
         Questionnaire questionnaire = new Questionnaire();
+        Answer answer = new Answer();
 
-        Answer answer4 = new Answer();
-        answer4.setId("2"); //TutoringYears
-        answer4.setValue(10);
-        answer4.setMultiSelection(false);
+        MultipleCategory multipleCategory = new MultipleCategory();
+        answer.setMultipleCategory(multipleCategory);
 
-        questionnaire.setAnswers(List.of(answer4));
+
+        SingleSelection yearsOfTraining = new SingleSelection("Q2",10);
+        SingleCategory singleCategory = new SingleCategory();
+        singleCategory.setSingleSelections(List.of(yearsOfTraining));
+        answer.setSingleCategory(singleCategory);
+        questionnaire.setAnswer(answer);
 
         return questionnaire;
     }

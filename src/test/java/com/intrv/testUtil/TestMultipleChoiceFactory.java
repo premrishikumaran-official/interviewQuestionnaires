@@ -2,25 +2,24 @@ package com.intrv.testUtil;
 
 
 
-import com.intrv.model.multichoice.AfterSchoolClub;
-import com.intrv.model.multichoice.HomeSchooling;
-import com.intrv.model.multichoice.OnlineTutoring;
-import com.intrv.model.multichoice.SelectedChoice;
+import com.intrv.helper.MultiChoiceHelper;
+import com.intrv.helper.ScoreHelper;
 
 import java.util.List;
 
 public class TestMultipleChoiceFactory {
 
-    public static List<SelectedChoice> getSelectedChoiceAnswerList() {
-        SelectedChoice selectedChoiceAnswer1 = new AfterSchoolClub();
-        SelectedChoice selectedChoiceAnswer2 = new HomeSchooling();
-        SelectedChoice selectedChoiceAnswer3 = new OnlineTutoring();
-        return List.of(selectedChoiceAnswer1,selectedChoiceAnswer2,selectedChoiceAnswer3);
+    public static List<ScoreHelper> getSelectedChoiceAnswerList() {
+        ScoreHelper afterSchoolClub = new MultiChoiceHelper().setValue(1);
+        ScoreHelper homeSchooling = new MultiChoiceHelper().setValue(1);
+        ScoreHelper onlineTutoring = new MultiChoiceHelper().setValue(1);
+        return List.of(afterSchoolClub,homeSchooling,onlineTutoring);
     }
 
-    public static List<SelectedChoice> getSelectedChoiceWithAfterSchoolAndHomeSchool() {
-        SelectedChoice selectedChoiceAnswer1 = new AfterSchoolClub();
-        SelectedChoice selectedChoiceAnswer2 = new HomeSchooling();
-        return List.of(selectedChoiceAnswer1,selectedChoiceAnswer2);
+    public static List<ScoreHelper> getSelectedChoiceWithAfterSchoolAndHomeSchool() {
+        ScoreHelper afterSchoolClub = new MultiChoiceHelper().setValue(1);
+        ScoreHelper homeSchooling = new MultiChoiceHelper().setValue(1);
+        ScoreHelper onlineTutoring = new MultiChoiceHelper().setValue(1);
+        return List.of(afterSchoolClub,homeSchooling);
     }
 }

@@ -1,10 +1,8 @@
 package com.intrv.util;
 
-import com.intrv.model.Question;
-import com.intrv.model.multichoice.AfterSchoolClub;
-import com.intrv.model.multichoice.HomeSchooling;
-import com.intrv.model.multichoice.OnlineTutoring;
-import com.intrv.model.singlechoice.TutoringYears;
+import com.intrv.helper.MultiChoiceHelper;
+import com.intrv.helper.ScoreHelper;
+import com.intrv.helper.TutoringYearsHelper;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -12,36 +10,37 @@ import java.util.Optional;
 public enum QuestionMapper {
 
 
-    AfterSchoolClub("1a",  new AfterSchoolClub()),
-    HomeSchooling("1b", new HomeSchooling()),
-    OnlineTutoring("1c",  new OnlineTutoring()),
-    TutoringYears("2", new TutoringYears());
+    AfterSchoolClub("Q1a",  new MultiChoiceHelper()),
+    HomeSchooling("Q1b", new MultiChoiceHelper()),
+    OnlineTutoring("Q1c",  new MultiChoiceHelper()),
+    TutoringYears("Q2", new TutoringYearsHelper());
 
     private final String id;
-    private final Question question;
+    private final ScoreHelper scoreHelper;
 
-    QuestionMapper(String id, Question question) {
+
+    QuestionMapper(String id, ScoreHelper scoreHelper) {
 
         this.id = id;
-        this.question = question;
+        this.scoreHelper = scoreHelper;
     }
 
     public String getId() {
         return id;
     }
 
-    public Question getQuestion() {
-        return question;
+
+    public ScoreHelper getScoreHelper() {
+        return scoreHelper;
     }
 
+    public static Optional<ScoreHelper> findByTypeId(String id,int value) {
 
-    public static Optional<Question> findByQuestionIdAndSetValue(String id,int value) {
-        Optional<Question> question =  Arrays.stream(QuestionMapper.values())
+        return Arrays.stream(QuestionMapper.values())
                 .filter(v->v.getId().equals(id))
-                .map(QuestionMapper::getQuestion)
+                .map(QuestionMapper::getScoreHelper)
+                .map(sh->sh.setValue(value))
                 .findFirst();
-        question.ifPresent(question1 -> question1.setValue(value));
-        return question;
 
     }
 }

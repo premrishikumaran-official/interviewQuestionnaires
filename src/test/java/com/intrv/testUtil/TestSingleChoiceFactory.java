@@ -1,33 +1,33 @@
 package com.intrv.testUtil;
 
 
-import com.intrv.model.singlechoice.SingleChoiceAnswer;
-import com.intrv.model.singlechoice.TutoringYears;
+import com.intrv.helper.ScoreHelper;
+import com.intrv.helper.TutoringYearsHelper;
 
 import java.util.List;
 
 public class TestSingleChoiceFactory {
 
-    public static List<SingleChoiceAnswer> getTutoringYears1() {
-        SingleChoiceAnswer singleChoiceAnswer1 = new TutoringYears();
+    public static List<ScoreHelper> getTutoringYears1() {
+        TutoringYearsHelper singleChoiceAnswer1 = new TutoringYearsHelper();
         singleChoiceAnswer1.setValue(1);
         return List.of(singleChoiceAnswer1);
     }
 
-    public static List<SingleChoiceAnswer> getTutoringYears2() {
-        SingleChoiceAnswer singleChoiceAnswer1 = new TutoringYears();
+    public static List<ScoreHelper> getTutoringYears2() {
+        TutoringYearsHelper singleChoiceAnswer1 = new TutoringYearsHelper();
         singleChoiceAnswer1.setValue(2);
         return List.of(singleChoiceAnswer1);
     }
 
-    public static List<SingleChoiceAnswer> getTutoringYears3() {
-        SingleChoiceAnswer singleChoiceAnswer1 = new TutoringYears();
+    public static List<ScoreHelper> getTutoringYears3() {
+        TutoringYearsHelper singleChoiceAnswer1 = new TutoringYearsHelper();
         singleChoiceAnswer1.setValue(3);
         return List.of(singleChoiceAnswer1);
     }
 
-    public static List<SingleChoiceAnswer> getTutoringYears10() {
-        SingleChoiceAnswer singleChoiceAnswer1 = new TutoringYears();
+    public static List<ScoreHelper> getTutoringYears10() {
+        TutoringYearsHelper singleChoiceAnswer1 = new TutoringYearsHelper();
         singleChoiceAnswer1.setValue(10);
         return List.of(singleChoiceAnswer1);
     }
