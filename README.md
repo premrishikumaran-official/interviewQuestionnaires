@@ -29,3 +29,19 @@ Given a tutor has selected one of the options for the single choice question the
 the points associated with that choice are added to their score
 Given a tutor has answered both questions then their score is the sum of their points
 for both questions
+
+### Solution
+I added few constraints for the solution
+
+1. Create a solution that is generic as possible.
+
+   Adding new single solution or multi solution question can be done without changing the business logic
+   
+2. Score calculation should be decided on the backend, 
+
+   ie Client(Mob/Web) has no responsibility is deciding the score other than providing input
+
+This introduced additional complexity in keeping the question to score deriving mapping in application layer
+as AnswerToScoreMapper  
+   
+
