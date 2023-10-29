@@ -7,7 +7,7 @@ import com.intrv.model.multichoice.MultiSelectionChoice;
 import com.intrv.model.multichoice.MultipleCategory;
 import com.intrv.model.singlechoice.SingleCategory;
 import com.intrv.model.singlechoice.SingleSelection;
-import com.intrv.util.QuestionMapper;
+import com.intrv.util.AnswerToScoreMapper;
 import com.intrv.util.TutorScoring;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class TutorServiceImpl implements TutorService {
 
         List<ScoreHelper> multiScoreHelper = multiSelectionChoices.stream()
                 .filter(MultiSelectionChoice::isSelected)
-                .map(a -> QuestionMapper.findByTypeId(a.getType(),1))
+                .map(a -> AnswerToScoreMapper.findByTypeId(a.getType(),1))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .map(sh->sh.setValue(1))
@@ -43,7 +43,7 @@ public class TutorServiceImpl implements TutorService {
 
         List<ScoreHelper> singleScoreHelper = singleSelections.stream()
                 .filter(ss->ss.getValue()!=0)
-                .map(a -> QuestionMapper.findByTypeId(a.getType(),a.getValue()))
+                .map(a -> AnswerToScoreMapper.findByTypeId(a.getType(),a.getValue()))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toList());

@@ -1,6 +1,6 @@
 package com.intrv.helper;
 
-public class TutoringYearsHelper implements ScoreHelper {
+public class TutoringYearsScoreHelper implements ScoreHelper {
     private int value;
 
     @Override

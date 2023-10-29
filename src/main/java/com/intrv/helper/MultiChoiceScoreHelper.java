@@ -1,6 +1,6 @@
 package com.intrv.helper;
 
-public class MultiChoiceHelper implements ScoreHelper{
+public class MultiChoiceScoreHelper implements ScoreHelper{
 
     private int value;
     @Override

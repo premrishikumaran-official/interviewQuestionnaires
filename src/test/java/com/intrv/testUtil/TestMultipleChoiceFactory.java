@@ -2,7 +2,7 @@ package com.intrv.testUtil;
 
 
 
-import com.intrv.helper.MultiChoiceHelper;
+import com.intrv.helper.MultiChoiceScoreHelper;
 import com.intrv.helper.ScoreHelper;
 
 import java.util.List;
@@ -10,16 +10,16 @@ import java.util.List;
 public class TestMultipleChoiceFactory {
 
     public static List<ScoreHelper> getSelectedChoiceAnswerList() {
-        ScoreHelper afterSchoolClub = new MultiChoiceHelper().setValue(1);
-        ScoreHelper homeSchooling = new MultiChoiceHelper().setValue(1);
-        ScoreHelper onlineTutoring = new MultiChoiceHelper().setValue(1);
+        ScoreHelper afterSchoolClub = new MultiChoiceScoreHelper().setValue(1);
+        ScoreHelper homeSchooling = new MultiChoiceScoreHelper().setValue(1);
+        ScoreHelper onlineTutoring = new MultiChoiceScoreHelper().setValue(1);
         return List.of(afterSchoolClub,homeSchooling,onlineTutoring);
     }
 
     public static List<ScoreHelper> getSelectedChoiceWithAfterSchoolAndHomeSchool() {
-        ScoreHelper afterSchoolClub = new MultiChoiceHelper().setValue(1);
-        ScoreHelper homeSchooling = new MultiChoiceHelper().setValue(1);
-        ScoreHelper onlineTutoring = new MultiChoiceHelper().setValue(1);
+        ScoreHelper afterSchoolClub = new MultiChoiceScoreHelper().setValue(1);
+        ScoreHelper homeSchooling = new MultiChoiceScoreHelper().setValue(1);
+        ScoreHelper onlineTutoring = new MultiChoiceScoreHelper().setValue(1);
         return List.of(afterSchoolClub,homeSchooling);
     }
 }
