@@ -41,7 +41,7 @@ I added few constraints for the solution
 
    ie Client(Mob/Web) has no responsibility is deciding the score other than providing input
 
-This introduced additional complexity in keeping the question to score deriving mapping in application layer
+This introduced additional complexity in keeping the 'question to score deriving mapping in application layer'
 as AnswerToScoreMapper  
    
 
