@@ -1,7 +1,7 @@
 package com.intrv.service;
 
-import com.intrv.model.Questionnaire;
+import com.intrv.model.TutorQuestionnaire;
 
 public interface TutorService {
-    int calculateScore(Questionnaire questionnaire);
+    public int calculateScore(TutorQuestionnaire questionnaire);
 }

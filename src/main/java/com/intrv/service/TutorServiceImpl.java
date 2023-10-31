@@ -1,55 +1,43 @@
 package com.intrv.service;
 
-import com.intrv.helper.ScoreHelper;
-import com.intrv.model.Answer;
-import com.intrv.model.Questionnaire;
-import com.intrv.model.multichoice.MultiSelectionChoice;
-import com.intrv.model.multichoice.MultipleCategory;
-import com.intrv.model.singlechoice.SingleCategory;
-import com.intrv.model.singlechoice.SingleSelection;
-import com.intrv.util.AnswerToScoreMapper;
-import com.intrv.util.TutorScoring;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import com.intrv.model.MultipleSelect;
+import com.intrv.model.SingleSelect;
+import com.intrv.model.TutorQuestionnaire;
 
 public class TutorServiceImpl implements TutorService {
 
 
     @Override
-    public int calculateScore(Questionnaire questionnaire) {
+    public int calculateScore(TutorQuestionnaire questionnaire) {
+        int totalScore = 0;
+        MultipleSelect multipleSelect = questionnaire.getMultipleSelect();
+        SingleSelect singleSelect = questionnaire.getSingleSelect();
+        if (multipleSelect != null) {
+            if (multipleSelect.getAfterSchoolClub() != null
+                    && multipleSelect.getAfterSchoolClub().isSelected()) {
+                totalScore += 1;
+            }
+            if (multipleSelect.getOnlineTutoring() != null
+                    && multipleSelect.getOnlineTutoring().isSelected()) {
+                totalScore += 1;
+            }
 
-        Answer answer = questionnaire.getAnswer();
-        MultipleCategory multipleCategory = answer.getMultipleCategory();
-        SingleCategory singleCategory = answer.getSingleCategory();
+            if (multipleSelect.getHomeSchooling() != null
+                    && multipleSelect.getHomeSchooling().isSelected()) {
+                totalScore += 1;
+            }
+        }
+        if (singleSelect != null && singleSelect.getTutoringExperience() != null) {
+            int years = singleSelect.getTutoringExperience().getYears();
+            if (years == 2) {
+                totalScore += 1;
+            } else if (years >= 3) {
+                totalScore += 2;
+            }
 
-        List<MultiSelectionChoice> multiSelectionChoices =
-                        Optional.ofNullable(multipleCategory.getCheckboxes())
-                                .orElseGet(ArrayList::new);
+        }
 
-        List<SingleSelection> singleSelections =
-                Optional.ofNullable(singleCategory.getSingleSelections())
-                                                .orElseGet(ArrayList::new);
-
-        List<ScoreHelper> multiScoreHelper = multiSelectionChoices.stream()
-                .filter(MultiSelectionChoice::isSelected)
-                .map(a -> AnswerToScoreMapper.findByTypeId(a.getType(),1))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .map(sh->sh.setValue(1))
-                .collect(Collectors.toList());
-
-        List<ScoreHelper> singleScoreHelper = singleSelections.stream()
-                .filter(ss->ss.getValue()!=0)
-                .map(a -> AnswerToScoreMapper.findByTypeId(a.getType(),a.getValue()))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toList());
-
-
-       return TutorScoring.getTotalScore(multiScoreHelper, singleScoreHelper);
-
+        return totalScore;
     }
 }

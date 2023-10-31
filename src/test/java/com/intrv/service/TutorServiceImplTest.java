@@ -1,7 +1,6 @@
 package com.intrv.service;
 
-import com.intrv.model.Questionnaire;
-import com.intrv.testUtil.TestQuestionnaireFactory;
+import com.intrv.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,31 +15,87 @@ class TutorServiceImplTest {
 
     @Test
     void WhenQuestionnaireHomeAfterSclOnlineTutor2YearTutoringSelected_thenCorrectScoreIsReturned (){
-       Questionnaire questionnaire =  TestQuestionnaireFactory.getQuestHomeAfterSclOnlineTutor2YearTutoring();
+        TutorQuestionnaire questionnaire = new TutorQuestionnaire();
+        questionnaire.setTutorId("tuto1");
+
+        MultipleSelect multipleSelect = new MultipleSelect();
+        multipleSelect.setHomeSchooling(new Option(true));
+        multipleSelect.setAfterSchoolClub(new Option(true));
+        multipleSelect.setOnlineTutoring(new Option(true));
+        questionnaire.setMultipleSelect(multipleSelect);
+
+        SingleSelect singleSelect = new SingleSelect(new TutoringExperience(2));
+        questionnaire.setSingleSelect(singleSelect);
+
         int score = tutorService.calculateScore(questionnaire);
         assertEquals(4,score);
     }
 
     @Test
     void WhenQuestionnaireHomeAfterSclOnlineTutor3YearTutoringSelected_thenCorrectScoreIsReturned (){
-        Questionnaire questionnaire =  TestQuestionnaireFactory.getQuestHomeAfterSclOnlineTutor3YearTutoring();
+        TutorQuestionnaire questionnaire = new TutorQuestionnaire();
+        questionnaire.setTutorId("tuto1");
+
+        MultipleSelect multipleSelect = new MultipleSelect();
+        multipleSelect.setHomeSchooling(new Option(true));
+        multipleSelect.setAfterSchoolClub(new Option(true));
+        multipleSelect.setOnlineTutoring(new Option(true));
+        questionnaire.setMultipleSelect(multipleSelect);
+
+        SingleSelect singleSelect = new SingleSelect(new TutoringExperience(3));
+        questionnaire.setSingleSelect(singleSelect);
+
         int score = tutorService.calculateScore(questionnaire);
         assertEquals(5,score);
     }
 
-    @Test
-    void WhenQuestionnaireHomeAfterSclOnlineTutor10YearTutoringSelected_thenCorrectScoreIsReturned (){
-        Questionnaire questionnaire =  TestQuestionnaireFactory.getQuestHomeAfterSclOnlineTutor10YearTutoring();
-        int score = tutorService.calculateScore(questionnaire);
-        assertEquals(5,score);
-    }
 
     @Test
-    void WhenQuestionnaireOnlyTutor10YearTutoringSelected_thenCorrectScoreIsReturned (){
-        Questionnaire questionnaire =  TestQuestionnaireFactory.getOnlyTutor10YearTutoring();
+    void WhenQuestionnaireHome3YearTutoringSelected_thenCorrectScoreIsReturned (){
+        TutorQuestionnaire questionnaire = new TutorQuestionnaire();
+        questionnaire.setTutorId("tuto1");
+
+        MultipleSelect multipleSelect = new MultipleSelect();
+        multipleSelect.setHomeSchooling(new Option(true));
+        questionnaire.setMultipleSelect(multipleSelect);
+
+        SingleSelect singleSelect = new SingleSelect(new TutoringExperience(3));
+        questionnaire.setSingleSelect(singleSelect);
+
+        int score = tutorService.calculateScore(questionnaire);
+        assertEquals(3,score);
+    }
+
+
+    @Test
+    void WhenOnly3YearTutoringSelected_thenCorrectScoreIsReturned (){
+        TutorQuestionnaire questionnaire = new TutorQuestionnaire();
+        questionnaire.setTutorId("tuto1");
+
+
+        SingleSelect singleSelect = new SingleSelect(new TutoringExperience(3));
+        questionnaire.setSingleSelect(singleSelect);
+
         int score = tutorService.calculateScore(questionnaire);
         assertEquals(2,score);
     }
+
+    @Test
+    void WhenQuestionnaireHomeAfterSclOnlineSelected_thenCorrectScoreIsReturned (){
+        TutorQuestionnaire questionnaire = new TutorQuestionnaire();
+        questionnaire.setTutorId("tuto1");
+
+        MultipleSelect multipleSelect = new MultipleSelect();
+        multipleSelect.setHomeSchooling(new Option(true));
+        multipleSelect.setAfterSchoolClub(new Option(true));
+        multipleSelect.setOnlineTutoring(new Option(true));
+        questionnaire.setMultipleSelect(multipleSelect);
+
+
+        int score = tutorService.calculateScore(questionnaire);
+        assertEquals(3,score);
+    }
+
 
 
 
