@@ -1,0 +1,29 @@
+{
+  "tutorId": "tut01",
+  "answer": {
+    "multipleCategory": {
+      "checkboxes": [
+        {
+          "type": "Q1a",
+          "selected": true
+        },
+        {
+          "type": "Q1b",
+          "selected": true
+        },
+        {
+          "type": "Q1c",
+          "selected": true
+        }
+      ]
+    },
+    "singleCategory": {
+      "singleSelections": [
+        {
+          "type": "Q2",
+          "value": 2
+        }
+      ]
+    }
+  }
+}

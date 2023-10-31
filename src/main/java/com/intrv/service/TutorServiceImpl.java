@@ -38,7 +38,6 @@ public class TutorServiceImpl implements TutorService {
                 .map(a -> AnswerToScoreMapper.findByTypeId(a.getType(),1))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .map(sh->sh.setValue(1))
                 .collect(Collectors.toList());
 
         List<ScoreHelper> singleScoreHelper = singleSelections.stream()
